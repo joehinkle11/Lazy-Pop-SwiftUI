@@ -12,14 +12,9 @@ struct LazyPop<Content: View>: UIViewControllerRepresentable {
     let rootView: Content
     @Binding var lazyPopEnabled: Bool
     
-    init(rootView: Content, lazyPopEnabled: (Binding<Bool>)) {
+    init(rootView: Content, lazyPopEnabled: (Binding<Bool>)? = nil) {
         self.rootView = rootView
-        self._lazyPopEnabled = lazyPopEnabled
-    }
-    
-    init(rootView: Content) {
-        self.rootView = rootView
-        self._lazyPopEnabled = Binding<Bool>(get: { return true }, set: { _ in })
+        self._lazyPopEnabled = lazyPopEnabled ?? Binding<Bool>(get: { return true }, set: { _ in })
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
