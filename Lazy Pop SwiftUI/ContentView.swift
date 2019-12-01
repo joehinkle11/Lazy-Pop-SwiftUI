@@ -12,7 +12,7 @@ func makeList() -> [(Int, String)] {
     var array: [(Int, String)] = []
     for i in 1...100 {
         if i % 2 == 0 {
-            array.append((i, "\(i). Lazy pop enabled."))
+            array.append((i, "\(i). Lazy pop."))
         } else {
             array.append((i, "\(i). Default behavior."))
         }
@@ -59,12 +59,23 @@ struct DetailsView: View {
 
 struct DetailsViewWithLazyPop: View {
     @State var item: (Int, String)
-    @State var lazyPopEnabled = true
+    @State var isEnabled: Bool = true
     var body: some View {
-        LazyPop(
-            rootView: Text("Lazy pop enabled. Swipe anywhere to dimiss."),
-            lazyPopEnabled: lazyPopEnabled
-        )
+        VStack {
+            LazyPop(
+                rootView: VStack {
+                    Toggle(isOn: $isEnabled) {
+                        Text("Toggle lazy pop")
+                    }.padding(10)
+                    if isEnabled {
+                        Text("Lazy pop enabled. Swipe anywhere to dismiss.")
+                    } else {
+                        Text("Lazy pop disabled.")
+                    }
+                },
+                lazyPopEnabled: $isEnabled
+            )
+        }
         .navigationBarTitle(item.1)
     }
 }

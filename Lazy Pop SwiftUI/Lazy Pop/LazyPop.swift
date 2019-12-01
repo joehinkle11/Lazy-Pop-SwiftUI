@@ -8,10 +8,9 @@
 
 import SwiftUI
 
-
 struct LazyPop<Content: View>: UIViewControllerRepresentable {
     let rootView: Content
-    @State var lazyPopEnabled: Bool = false
+    @Binding var lazyPopEnabled: Bool
     
     func makeUIViewController(context: Context) -> UIViewController {
         let vc = SwipeRightToPopViewController(rootView: rootView)
@@ -20,12 +19,12 @@ struct LazyPop<Content: View>: UIViewControllerRepresentable {
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
             vc.addGesture()
         }
-
         return vc
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-
+        if let host = uiViewController as? UIHostingController<Content> {
+            host.rootView = rootView
+        }
     }
-    
 }
