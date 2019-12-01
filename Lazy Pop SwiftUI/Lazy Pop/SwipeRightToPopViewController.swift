@@ -5,12 +5,12 @@
 //  Created by Warif Akhand Rishi on 2/19/16.
 //  Copyright © 2016 Warif Akhand Rishi. All rights reserved.
 //
-//  Modifed by Joseph Hinkle on 12/1/19.
+//  Modified by Joseph Hinkle on 12/1/19.
+//  Modified version allows use in SwiftUI by subclassing UIHostingController.
+//  Copyright © 2019 Joseph Hinkle. All rights reserved.
 //
 
-import UIKit
 import SwiftUI
-
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -35,10 +35,21 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
 
     var percentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition?
     var panGestureRecognizer: UIPanGestureRecognizer!
+    var parentNavigationControllerToUse: UINavigationController?
 
     public func addGesture() {
-
-        guard parent?.parent?.navigationController?.viewControllers.count > 1 else {
+        // attempt to find a parent navigationController
+        var currentVc: UIViewController = self
+        for _ in 0...100 {
+            if (currentVc.navigationController != nil) &&
+               currentVc.navigationController?.viewControllers.count > 1
+                {
+                parentNavigationControllerToUse = currentVc.navigationController
+                break
+            }
+            currentVc = currentVc.parent ?? currentVc
+        }
+        guard parentNavigationControllerToUse?.viewControllers.count > 1 else {
             return
         }
         
@@ -53,8 +64,8 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
         switch panGesture.state {
 
         case .began:
-            parent?.parent?.navigationController?.delegate = self
-            _ = parent?.parent?.navigationController?.popViewController(animated: true)
+            parentNavigationControllerToUse?.delegate = self
+            _ = parentNavigationControllerToUse?.popViewController(animated: true)
 
         case .changed:
             if let percentDrivenInteractiveTransition = percentDrivenInteractiveTransition {
@@ -90,7 +101,7 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
 
     func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
 
-        parent?.parent?.navigationController?.delegate = nil
+        parentNavigationControllerToUse?.delegate = nil
         navigationController.delegate = nil
 
         if panGestureRecognizer.state == .began {
