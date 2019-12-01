@@ -29,7 +29,7 @@ struct ContentView: View {
                 if item.0 % 2 == 0 {
                     // Lazy pop
                     NavigationLink(
-                        destination: DetailsViewWithLazyPop(item: item)
+                        destination: DetailsViewWithToggleableLazyPop(item: item)
                     ) {
                         Text(item.1)
                         .bold()
@@ -56,8 +56,7 @@ struct DetailsView: View {
     }
 }
 
-
-struct DetailsViewWithLazyPop: View {
+struct DetailsViewWithToggleableLazyPop: View {
     @State var item: (Int, String)
     @State var isEnabled: Bool = true
     var body: some View {
@@ -66,7 +65,7 @@ struct DetailsViewWithLazyPop: View {
                 rootView: VStack {
                     Toggle(isOn: $isEnabled) {
                         Text("Toggle lazy pop")
-                    }.padding(10)
+                    }.padding(100)
                     if isEnabled {
                         Text("Lazy pop enabled. Swipe anywhere to dismiss.")
                     } else {
@@ -74,6 +73,18 @@ struct DetailsViewWithLazyPop: View {
                     }
                 },
                 lazyPopEnabled: $isEnabled
+            )
+        }
+        .navigationBarTitle(item.1)
+    }
+}
+
+struct DetailsViewWithLazyPop: View {
+    @State var item: (Int, String)
+    var body: some View {
+        VStack {
+            LazyPop(
+                rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
             )
         }
         .navigationBarTitle(item.1)
