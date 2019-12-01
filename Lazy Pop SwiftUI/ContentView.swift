@@ -8,9 +8,24 @@
 
 import SwiftUI
 
+func makeList() -> [String] {
+    var array: [String] = []
+    for i in 1...100 {
+        array.append("List element \(i)")
+    }
+    return array
+}
+
+let list = makeList()
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List (list, id: \.self) { item in
+                Text(item)
+            }
+            .navigationBarTitle("Lazy Pop SwiftUI")
+        }
     }
 }
 
