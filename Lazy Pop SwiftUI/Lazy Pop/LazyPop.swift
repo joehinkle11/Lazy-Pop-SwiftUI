@@ -10,12 +10,15 @@ import SwiftUI
 
 
 struct LazyPop<Content: View>: UIViewControllerRepresentable {
-    var rootView: Content
-
+    let rootView: Content
+    var lazyPopEnabled: Bool = false
+    
     func makeUIViewController(context: Context) -> UIViewController {
         let vc = SwipeRightToPopViewController(rootView: rootView)
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
-            vc.addGesture()
+        if lazyPopEnabled {
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
+                vc.addGesture()
+            }
         }
         return vc
     }

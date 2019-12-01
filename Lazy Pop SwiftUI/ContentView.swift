@@ -29,7 +29,7 @@ struct ContentView: View {
                 if item.0 % 2 == 0 {
                     // Lazy pop
                     NavigationLink(
-                        destination: LazyPop(rootView: DetailsView(item: item))
+                        destination: DetailsView(item: item)
                     ) {
                         Text(item.1)
                         .bold()
@@ -51,7 +51,10 @@ struct ContentView: View {
 struct DetailsView: View {
     @State var item: (Int, String)
     var body: some View {
-        Text(item.0 % 2 == 0 ? "Lazy pop enabled. Swipe anywhere to dimiss." : "Default behavior enabled. Swipe from the leftmost part of the screen to dismiss.")
+        LazyPop(
+            rootView: Text(item.0 % 2 == 0 ? "Lazy pop enabled. Swipe anywhere to dimiss." : "Default behavior enabled. Swipe from the leftmost part of the screen to dismiss."),
+            lazyPopEnabled: item.0 % 2 == 0
+        )
         .navigationBarTitle(item.1)
     }
 }

@@ -64,8 +64,8 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
         case .ended:
             let velocity = panGesture.velocity(in: view).x
 
-            // Continue if drag more than 50% of screen width or velocity is higher than 1000
-            if percent > 0.5 || velocity > 1000 {
+            // Continue if drag more than 50% of screen width or velocity is higher than 100
+            if percent > 0.5 || velocity > 100 {
                 percentDrivenInteractiveTransition?.finish()
             } else {
                 percentDrivenInteractiveTransition?.cancel()
