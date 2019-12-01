@@ -8,10 +8,14 @@
 
 import SwiftUI
 
-func makeList() -> [String] {
-    var array: [String] = []
+func makeList() -> [(Int, String)] {
+    var array: [(Int, String)] = []
     for i in 1...100 {
-        array.append("List element \(i)")
+        if i % 2 == 0 {
+            array.append((i, "\(i). Lazy pop enabled."))
+        } else {
+            array.append((i, "\(i). Default behavior."))
+        }
     }
     return array
 }
@@ -21,11 +25,33 @@ let list = makeList()
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            List (list, id: \.self) { item in
-                Text(item)
+            List (list, id: \.0) { item in
+                if item.0 % 2 == 0 {
+                    // Lazy pop
+                    NavigationLink(
+                        destination: DetailsView(item: item)
+                    ) {
+                        Text(item.1)
+                        .bold()
+                    }
+                } else {
+                    // Default behavior
+                    NavigationLink(
+                        destination: DetailsView(item: item)
+                    ) {
+                        Text(item.1)
+                    }
+                }
             }
             .navigationBarTitle("Lazy Pop SwiftUI")
         }
+    }
+}
+
+struct DetailsView: View {
+    @State var item: (Int, String)
+    var body: some View {
+        Text(item.1)
     }
 }
 
