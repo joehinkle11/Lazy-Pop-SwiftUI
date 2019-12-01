@@ -13,6 +13,9 @@
 		9FF6AD8223941F410026063D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF6AD8123941F410026063D /* Assets.xcassets */; };
 		9FF6AD8523941F410026063D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF6AD8423941F410026063D /* Preview Assets.xcassets */; };
 		9FF6AD8823941F410026063D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF6AD8623941F410026063D /* LaunchScreen.storyboard */; };
+		9FF6AD91239424580026063D /* SlideAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6AD90239424580026063D /* SlideAnimatedTransitioning.swift */; };
+		9FF6AD93239424BE0026063D /* SwipeRightToPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6AD92239424BE0026063D /* SwipeRightToPopViewController.swift */; };
+		9FF6AD95239426660026063D /* LazyPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6AD94239426660026063D /* LazyPop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		9FF6AD8423941F410026063D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FF6AD8723941F410026063D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9FF6AD8923941F410026063D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FF6AD90239424580026063D /* SlideAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		9FF6AD92239424BE0026063D /* SwipeRightToPopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeRightToPopViewController.swift; sourceTree = "<group>"; };
+		9FF6AD94239426660026063D /* LazyPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyPop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 				9FF6AD7B23941F400026063D /* AppDelegate.swift */,
 				9FF6AD7D23941F400026063D /* SceneDelegate.swift */,
 				9FF6AD7F23941F400026063D /* ContentView.swift */,
+				9FF6AD8F239424470026063D /* Lazy Pop */,
 				9FF6AD8123941F410026063D /* Assets.xcassets */,
 				9FF6AD8623941F410026063D /* LaunchScreen.storyboard */,
 				9FF6AD8923941F410026063D /* Info.plist */,
@@ -73,6 +80,16 @@
 				9FF6AD8423941F410026063D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9FF6AD8F239424470026063D /* Lazy Pop */ = {
+			isa = PBXGroup;
+			children = (
+				9FF6AD90239424580026063D /* SlideAnimatedTransitioning.swift */,
+				9FF6AD92239424BE0026063D /* SwipeRightToPopViewController.swift */,
+				9FF6AD94239426660026063D /* LazyPop.swift */,
+			);
+			path = "Lazy Pop";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF6AD91239424580026063D /* SlideAnimatedTransitioning.swift in Sources */,
+				9FF6AD95239426660026063D /* LazyPop.swift in Sources */,
+				9FF6AD93239424BE0026063D /* SwipeRightToPopViewController.swift in Sources */,
 				9FF6AD7C23941F400026063D /* AppDelegate.swift in Sources */,
 				9FF6AD7E23941F400026063D /* SceneDelegate.swift in Sources */,
 				9FF6AD8023941F400026063D /* ContentView.swift in Sources */,
@@ -216,7 +236,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
