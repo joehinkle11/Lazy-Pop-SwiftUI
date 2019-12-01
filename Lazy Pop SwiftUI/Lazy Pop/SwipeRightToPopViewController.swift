@@ -33,6 +33,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINavigationControllerDelegate where Content : View {
 
+    var lazyPopContent: LazyPop<Content>?
     var percentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition?
     var panGestureRecognizer: UIPanGestureRecognizer!
     var parentNavigationControllerToUse: UINavigationController?
@@ -64,8 +65,10 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
         switch panGesture.state {
 
         case .began:
-            parentNavigationControllerToUse?.delegate = self
-            _ = parentNavigationControllerToUse?.popViewController(animated: true)
+            if lazyPopContent?.lazyPopEnabled == true {
+                parentNavigationControllerToUse?.delegate = self
+                _ = parentNavigationControllerToUse?.popViewController(animated: true)
+            }
 
         case .changed:
             if let percentDrivenInteractiveTransition = percentDrivenInteractiveTransition {

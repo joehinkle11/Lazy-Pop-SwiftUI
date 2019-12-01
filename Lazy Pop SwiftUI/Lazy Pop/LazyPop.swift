@@ -11,15 +11,16 @@ import SwiftUI
 
 struct LazyPop<Content: View>: UIViewControllerRepresentable {
     let rootView: Content
-    var lazyPopEnabled: Bool = false
+    @State var lazyPopEnabled: Bool = false
     
     func makeUIViewController(context: Context) -> UIViewController {
         let vc = SwipeRightToPopViewController(rootView: rootView)
-        if lazyPopEnabled {
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
-                vc.addGesture()
-            }
+        vc.lazyPopContent = self
+        // A timer is needed because the vc is not added to the view hierarchy until after we return it
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
+            vc.addGesture()
         }
+
         return vc
     }
 
