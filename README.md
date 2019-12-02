@@ -8,15 +8,22 @@ Forked from https://github.com/rishi420/SwipeRightToPopController and adapted fo
 
 # Use
 
+To make your view lazily poppable, just put it inside a `LazyPop()` view.
+
 ```swift
-struct DetailsView: View {
+struct DetailsViewWithLazyPop: View {
     @State var item: (Int, String)
     var body: some View {
-        Text("Default behavior enabled. Swipe from the leftmost part of the screen to dismiss.")
+        LazyPop(
+            rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
+        )
         .navigationBarTitle(item.1)
     }
 }
+```
+If you would like to toggle when the lazy pop is enabled, just pass it a boolean state.
 
+```swift
 struct DetailsViewWithToggleableLazyPop: View {
     @State var item: (Int, String)
     @State var isEnabled: Bool = true
@@ -36,16 +43,6 @@ struct DetailsViewWithToggleableLazyPop: View {
                 lazyPopEnabled: $isEnabled
             )
         }
-        .navigationBarTitle(item.1)
-    }
-}
-
-struct DetailsViewWithLazyPop: View {
-    @State var item: (Int, String)
-    var body: some View {
-        LazyPop(
-            rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
-        )
         .navigationBarTitle(item.1)
     }
 }
