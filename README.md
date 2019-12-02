@@ -47,3 +47,9 @@ struct DetailsViewWithToggleableLazyPop: View {
     }
 }
 ```
+
+# Install
+
+Just inlude the three files under `LazyPop` in this repo. Here's a link to them https://github.com/joehinkle11/Lazy-Pop-SwiftUI/tree/master/Lazy%20Pop%20SwiftUI/Lazy%20Pop
+
+If this gets enough use, I'll put this in a Swift Package or a Cocopod.
