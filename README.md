@@ -12,7 +12,6 @@ To make your view lazily poppable, just put it inside a `LazyPop()` view.
 
 ```swift
 struct DetailsViewWithLazyPop: View {
-    @State var item: (Int, String)
     var body: some View {
         LazyPop(
             rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
@@ -24,7 +23,6 @@ If you would like to toggle when the lazy pop is enabled, just pass it a boolean
 
 ```swift
 struct DetailsViewWithToggleableLazyPop: View {
-    @State var item: (Int, String)
     @State var isEnabled: Bool = true
     var body: some View {
         LazyPop(
