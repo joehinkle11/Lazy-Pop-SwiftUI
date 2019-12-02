@@ -27,14 +27,12 @@ struct DetailsViewWithToggleableLazyPop: View {
     @State var item: (Int, String)
     @State var isEnabled: Bool = true
     var body: some View {
-        VStack {
-            LazyPop(
-                rootView: Toggle(isOn: $isEnabled) {
-                    Text("Toggle lazy pop")
-                },
-                lazyPopEnabled: $isEnabled
-            )
-        }
+        LazyPop(
+            rootView: Toggle(isOn: $isEnabled) {
+                Text("Toggle lazy pop")
+            },
+            lazyPopEnabled: $isEnabled
+        )
     }
 }
 ```
