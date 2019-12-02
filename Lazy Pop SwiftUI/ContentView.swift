@@ -82,11 +82,9 @@ struct DetailsViewWithToggleableLazyPop: View {
 struct DetailsViewWithLazyPop: View {
     @State var item: (Int, String)
     var body: some View {
-        VStack {
-            LazyPop(
-                rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
-            )
-        }
+        LazyPop(
+            rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
+        )
         .navigationBarTitle(item.1)
     }
 }
