@@ -10,7 +10,7 @@ Also thanks to [lyinsteve on this Reddit comment](https://www.reddit.com/r/iOSPr
 
 # Use
 
-To make your view lazily poppable, just add the `LazyPop()` modifer to it.
+To make your view lazily poppable, just add the `lazyPop()` modifer to it.
 
 ```swift
 struct DetailsViewWithLazyPop: View {
