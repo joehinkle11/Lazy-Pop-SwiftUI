@@ -15,7 +15,6 @@
 		9FF6AD8823941F410026063D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF6AD8623941F410026063D /* LaunchScreen.storyboard */; };
 		9FF6AD91239424580026063D /* SlideAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6AD90239424580026063D /* SlideAnimatedTransitioning.swift */; };
 		9FF6AD93239424BE0026063D /* SwipeRightToPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6AD92239424BE0026063D /* SwipeRightToPopViewController.swift */; };
-		9FF6AD95239426660026063D /* LazyPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6AD94239426660026063D /* LazyPop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		9FF6AD8923941F410026063D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FF6AD90239424580026063D /* SlideAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		9FF6AD92239424BE0026063D /* SwipeRightToPopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeRightToPopViewController.swift; sourceTree = "<group>"; };
-		9FF6AD94239426660026063D /* LazyPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyPop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +85,6 @@
 			children = (
 				9FF6AD90239424580026063D /* SlideAnimatedTransitioning.swift */,
 				9FF6AD92239424BE0026063D /* SwipeRightToPopViewController.swift */,
-				9FF6AD94239426660026063D /* LazyPop.swift */,
 			);
 			path = "Lazy Pop";
 			sourceTree = "<group>";
@@ -164,7 +161,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF6AD91239424580026063D /* SlideAnimatedTransitioning.swift in Sources */,
-				9FF6AD95239426660026063D /* LazyPop.swift in Sources */,
 				9FF6AD93239424BE0026063D /* SwipeRightToPopViewController.swift in Sources */,
 				9FF6AD7C23941F400026063D /* AppDelegate.swift in Sources */,
 				9FF6AD7E23941F400026063D /* SceneDelegate.swift in Sources */,

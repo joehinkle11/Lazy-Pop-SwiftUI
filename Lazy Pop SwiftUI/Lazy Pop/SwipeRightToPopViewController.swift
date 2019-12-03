@@ -33,10 +33,10 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINavigationControllerDelegate where Content : View {
 
-    var lazyPopContent: LazyPop<Content>?
-    var percentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition?
-    var panGestureRecognizer: UIPanGestureRecognizer!
-    var parentNavigationControllerToUse: UINavigationController?
+    fileprivate var lazyPopContent: LazyPop<Content>?
+    private var percentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition?
+    private var panGestureRecognizer: UIPanGestureRecognizer!
+    private var parentNavigationControllerToUse: UINavigationController?
 
     public func addGesture() {
         // attempt to find a parent navigationController
@@ -65,7 +65,7 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
         switch panGesture.state {
 
         case .began:
-            if lazyPopContent?.lazyPopEnabled == true {
+            if lazyPopContent?.enabled == true {
                 parentNavigationControllerToUse?.delegate = self
                 _ = parentNavigationControllerToUse?.popViewController(animated: true)
             }
@@ -119,3 +119,40 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
 }
 
 
+//
+//  Lazy Pop SwiftUI Component
+//
+//  Created by Joseph Hinkle on 12/1/19.
+//  Copyright © 2019 Joseph Hinkle. All rights reserved.
+//
+
+fileprivate struct LazyPop<Content: View>: UIViewControllerRepresentable {
+    let rootView: Content
+    @Binding var enabled: Bool
+    
+    init(_ rootView: Content, enabled: (Binding<Bool>)? = nil) {
+        self.rootView = rootView
+        self._enabled = enabled ?? Binding<Bool>(get: { return true }, set: { _ in })
+    }
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        let vc = SwipeRightToPopViewController(rootView: rootView)
+        vc.lazyPopContent = self
+        // A timer is needed because the vc is not added to the view hierarchy until after we return it
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
+            vc.addGesture()
+        }
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        if let host = uiViewController as? UIHostingController<Content> {
+            host.rootView = rootView
+        }
+    }
+}
+extension View {
+    public func lazyPop(enabled: (Binding<Bool>)? = nil) -> some View {
+        return LazyPop(self, enabled: enabled)
+    }
+}

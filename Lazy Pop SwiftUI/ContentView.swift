@@ -61,20 +61,16 @@ struct DetailsViewWithToggleableLazyPop: View {
     @State var isEnabled: Bool = true
     var body: some View {
         VStack {
-            LazyPop(
-                rootView: VStack {
-                    Toggle(isOn: $isEnabled) {
-                        Text("Toggle lazy pop")
-                    }.padding(100)
-                    if isEnabled {
-                        Text("Lazy pop enabled. Swipe anywhere to dismiss.")
-                    } else {
-                        Text("Lazy pop disabled.")
-                    }
-                },
-                lazyPopEnabled: $isEnabled
-            )
+            Toggle(isOn: $isEnabled) {
+                Text("Toggle lazy pop")
+            }.padding(100)
+            if isEnabled {
+                Text("Lazy pop enabled. Swipe anywhere to dismiss.")
+            } else {
+                Text("Lazy pop disabled.")
+            }
         }
+        .lazyPop(enabled: $isEnabled)
         .navigationBarTitle(item.1)
     }
 }
@@ -82,9 +78,8 @@ struct DetailsViewWithToggleableLazyPop: View {
 struct DetailsViewWithLazyPop: View {
     @State var item: (Int, String)
     var body: some View {
-        LazyPop(
-            rootView: Text("Lazy pop enabled. Swipe anywhere to dismiss.")
-        )
+        Text("Lazy pop enabled. Swipe anywhere to dismiss.")
+        .lazyPop()
         .navigationBarTitle(item.1)
     }
 }
