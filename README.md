@@ -1,4 +1,4 @@
-# Lazy Pop SwiftUI ![](https://raw.githubusercontent.com/joehinkle11/Lazy-Pop-SwiftUI/master/Lazy%20Pop%20SwiftUI/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29%401x.png)
+# Lazy Pop SwiftUI
 
 Swiping on any part of the screen starts an interruptible pop animation to the previous view.
 
@@ -7,6 +7,12 @@ Swiping on any part of the screen starts an interruptible pop animation to the p
 Forked from https://github.com/rishi420/SwipeRightToPopController and adapted for SwiftUI.
 
 Also thanks to [lyinsteve on this Reddit comment](https://www.reddit.com/r/iOSProgramming/comments/e4zeoi/i_made_a_swiftui_component_so_you_can_drag/f9gkllt/) for suggesting I turn this into modifier.
+
+# App Store Demo
+
+[![](https://raw.githubusercontent.com/joehinkle11/Lazy-Pop-SwiftUI/master/Lazy%20Pop%20SwiftUI/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60%402x.png)](https://apps.apple.com/us/app/lazy-pop-swiftui-demo/id1490371801)
+
+[Download the Lazy Pop SwiftUI demo here!](https://apps.apple.com/us/app/lazy-pop-swiftui-demo/id1490371801)
 
 # Use
 
