@@ -37,25 +37,42 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
     private var percentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition?
     private var panGestureRecognizer: UIPanGestureRecognizer!
     private var parentNavigationControllerToUse: UINavigationController?
+    private var gestureAdded = false
+    
+    override func viewDidLayoutSubviews() {
+        // You need to add gesture events after every subview layout to protect against weird edge cases
+        //    One notable edgecase is if you are in a splitview in landscape. In this case, there will be
+        //    no nav controller with 2 vcs, so our addGesture will fail. After rotating back to portrait,
+        //    the splitview will combine into one view with the details pushed on top. So only then would
+        //    would the addGesture find a parent nav controller with 2 view controllers. I don't know if
+        //    there are other edge cases, but running addGesture on every viewDidLayoutSubviews seems safe.
+        addGesture()
+    }
 
     public func addGesture() {
-        // attempt to find a parent navigationController
-        var currentVc: UIViewController = self
-        for _ in 0...100 {
-            if (currentVc.navigationController != nil) &&
-               currentVc.navigationController?.viewControllers.count > 1
-                {
-                parentNavigationControllerToUse = currentVc.navigationController
-                break
+        if !gestureAdded {
+            // attempt to find a parent navigationController
+            var currentVc: UIViewController = self
+            while true {
+                if (currentVc.navigationController != nil) &&
+                   currentVc.navigationController?.viewControllers.count > 1
+                    {
+                    parentNavigationControllerToUse = currentVc.navigationController
+                    break
+                }
+                guard let parent = currentVc.parent else {
+                    return
+                }
+                currentVc = parent
             }
-            currentVc = currentVc.parent ?? currentVc
+            guard parentNavigationControllerToUse?.viewControllers.count > 1 else {
+                return
+            }
+            
+            panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeRightToPopViewController.handlePanGesture(_:)))
+            self.view.addGestureRecognizer(panGestureRecognizer)
+            gestureAdded = true
         }
-        guard parentNavigationControllerToUse?.viewControllers.count > 1 else {
-            return
-        }
-        
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SwipeRightToPopViewController.handlePanGesture(_:)))
-        self.view.addGestureRecognizer(panGestureRecognizer)
     }
 
     @objc func handlePanGesture(_ panGesture: UIPanGestureRecognizer) {
@@ -138,10 +155,6 @@ fileprivate struct LazyPop<Content: View>: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         let vc = SwipeRightToPopViewController(rootView: rootView)
         vc.lazyPopContent = self
-        // A timer is needed because the vc is not added to the view hierarchy until after we return it
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (_) in
-            vc.addGesture()
-        }
         return vc
     }
 
