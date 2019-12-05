@@ -65,7 +65,7 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
         switch panGesture.state {
 
         case .began:
-            if lazyPopContent?.enabled == true {
+            if lazyPopContent?.isEnabled == true {
                 parentNavigationControllerToUse?.delegate = self
                 _ = parentNavigationControllerToUse?.popViewController(animated: true)
             }
@@ -128,11 +128,11 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
 
 fileprivate struct LazyPop<Content: View>: UIViewControllerRepresentable {
     let rootView: Content
-    @Binding var enabled: Bool
+    @Binding var isEnabled: Bool
     
-    init(_ rootView: Content, enabled: (Binding<Bool>)? = nil) {
+    init(_ rootView: Content, isEnabled: (Binding<Bool>)? = nil) {
         self.rootView = rootView
-        self._enabled = enabled ?? Binding<Bool>(get: { return true }, set: { _ in })
+        self._isEnabled = isEnabled ?? Binding<Bool>(get: { return true }, set: { _ in })
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
@@ -152,7 +152,7 @@ fileprivate struct LazyPop<Content: View>: UIViewControllerRepresentable {
     }
 }
 extension View {
-    public func lazyPop(enabled: (Binding<Bool>)? = nil) -> some View {
-        return LazyPop(self, enabled: enabled)
+    public func lazyPop(isEnabled: (Binding<Bool>)? = nil) -> some View {
+        return LazyPop(self, isEnabled: isEnabled)
     }
 }
