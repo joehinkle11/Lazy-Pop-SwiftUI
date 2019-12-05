@@ -29,7 +29,7 @@ struct DetailsViewWithToggleableLazyPop: View {
         Toggle(isOn: $isEnabled) {
             Text("Toggle lazy pop")
         }
-        .lazyPop(enabled: $isEnabled)
+        .lazyPop(isEnabled: $isEnabled)
     }
 }
 ```
