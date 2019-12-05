@@ -1,4 +1,4 @@
-# Lazy Pop SwiftUI
+# Lazy Pop SwiftUI ![](https://raw.githubusercontent.com/joehinkle11/Lazy-Pop-SwiftUI/master/Lazy%20Pop%20SwiftUI/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20%402x.png)
 
 Swiping on any part of the screen starts an interruptible pop animation to the previous view.
 
