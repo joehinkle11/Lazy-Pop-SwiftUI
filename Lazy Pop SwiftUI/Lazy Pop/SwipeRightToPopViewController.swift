@@ -76,8 +76,10 @@ class SwipeRightToPopViewController<Content>: UIHostingController<Content>, UINa
     }
 
     @objc func handlePanGesture(_ panGesture: UIPanGestureRecognizer) {
-
-        let percent = max(panGesture.translation(in: view).x, 0) / view.frame.width
+        
+        // if the parentNavigationControllerToUse has a width value, use that because it's more accurate. Otherwise use this view's width as a backup
+        let total = parentNavigationControllerToUse?.view.frame.width ?? view.frame.width
+        let percent = max(panGesture.translation(in: view).x, 0) / total
 
         switch panGesture.state {
 
