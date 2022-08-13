@@ -40,6 +40,10 @@ struct DetailsViewWithToggleableLazyPop: View {
 }
 ```
 
+# Gotchas
+
+The current implementation does not play well with some SwiftUI modifiers like `.ignoresSafeArea()`. There is currently no known workaround. If you find anything related to this problem, you can write about it in [this issue](https://github.com/joehinkle11/Lazy-Pop-SwiftUI/issues/3#issuecomment-1079688013).
+
 # Install
 
 Just inlude the two files under `LazyPop` in this repo. Here's a link to them https://github.com/joehinkle11/Lazy-Pop-SwiftUI/tree/master/Lazy%20Pop%20SwiftUI/Lazy%20Pop
