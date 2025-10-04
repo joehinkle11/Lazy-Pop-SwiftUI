@@ -1,5 +1,7 @@
 # Lazy Pop SwiftUI
 
+> iOS 26 now supports the "lazy pop" behavior by default. Therefore I'm archiving this repo.
+
 Swiping on any part of the screen starts an interruptible pop animation to the previous view.
 
 <p align="center"><img src="https://github.com/joehinkle11/Lazy-Pop-SwiftUI/raw/master/demo.gif"/></p>
